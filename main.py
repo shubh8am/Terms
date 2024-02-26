@@ -71,7 +71,7 @@ def create_terms():
     for s in total_s:
         for l in total_l:
             for j in total_j:
-                a =str(int( (2 * s + 1) )), [x for x in orbitals if orbitals.get(x)[0] == l][0] , str(j)
+                a =str(int( (2 * s + 1) ))+[x for x in orbitals if orbitals.get(x)[0] == l][0] + str(j)
                 spectral_terms.append(a)
 
 
