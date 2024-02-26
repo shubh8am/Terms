@@ -82,12 +82,6 @@ if st.button("Find", type="primary"):
     with col1:
         with st.expander(f"For Spin:{total_s[0]}"):
             for i in range(len(spectral_terms)):
-                if(total_s[0]==(spectral_terms[0]-1)/2):
-                	st.write(spectral_terms[i])
-    with col2:
-    	with st.expander(f"For Spin:{total_s[1]}"):
-    		for i in range(len(spectral_terms)):
-    			if(total_s[1]==(spectral_terms[0]-1)/2):
-    				st.write(spectral_terms[i])
+                st.write(spectral_terms[i])
 
 
