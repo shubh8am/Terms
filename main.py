@@ -80,7 +80,7 @@ if st.button("Find", type="primary"):
     findSpectralTerms(ip)
     col1,col2 =st.columns(2)
     with col1:
-        with st.expander(f"For Spin:{total_s[0]}"):
+        with st.expander("Spectral Symbols👇"):
             st.write(spectral_terms)
 
 
