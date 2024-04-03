@@ -2,7 +2,56 @@ import streamlit as st
 
 st.header(":rainbow[Spectral Terms Calculator....]", divider="red")
 
-orbitals = {"s": [0, 2], "p": [1, 6], "d": [2, 10], "f": [3, 14]}
+res={"s":0,"p":1,'d':2,'f':3,'up':1/2,'down':-1/2}
+orb={0:"s",1:"p",2:"d",3:"f",4:"g",5:"h"}
+terms=[]
+
+def valid(i):
+	return res.get(i[1])<int(i[0])
+	
+def total_spin(no_of_e,rooms):
+	if no_of_e<=rooms:
+		return no_of_e*res.get("up")
+	elif no_of_e>rooms:
+		return rooms*res.get("up")+(no_of_e-rooms)*res.get("down")
+
+	
+	
+#user input config
+
+state=[{"n":int(i[0]),"l":res.get(i[1]),"s":total_spin(int(i[2]),2*res.get(i[1])+1)} for i in st.text_input("\tEnter Valence Configuration: ").split(" ") if valid(i)]
+
+
+#S=| S1+S2 | to | S1 - S2 |
+spin=[(state[0].get("s")+state[1].get("s")-i) for i in range(1+int(state[0].get("s")+state[1].get("s")-abs(state[0].get("s")-state[1].get("s"))))]
+
+
+#L=| L1+L2 | to | L1 - L2 |
+orbit=[round((state[0].get("l")+state[1].get("l")-i),2) for i in range(1+int(state[0].get("l")+state[1].get("l")-abs(state[0].get("l")-state[1].get("l"))))]
+
+
+#J=| L+S | to | L - S |
+for s in spin:
+	for l in orbit:
+		j=[(s+l-i) for i in range(1+int(s+l-abs(s-l)))]
+		terms.append(str(int(2*s+1))+orb.get(l)+str(j))
+		
+# spectral terms printing
+print("\t|---Spectral Terms---|")
+if st.button("Find", type="primary"):
+   col1,col2 =st.columns(2)
+    with col1:
+        with st.expander("Spectral Symbols👇"):
+            st.write(terms)
+
+	
+
+
+
+
+
+
+"""orbitals = {"s": [0, 2], "p": [1, 6], "d": [2, 10], "f": [3, 14]}
 spin_individual = []
 total_s = []
 total_l = []
@@ -83,4 +132,4 @@ if st.button("Find", type="primary"):
         with st.expander("Spectral Symbols👇"):
             st.write(spectral_terms)
 
-
+"""
