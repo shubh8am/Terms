@@ -39,10 +39,10 @@ for s in spin:
 # spectral terms printing
 print("\t|---Spectral Terms---|")
 if st.button("Find", type="primary"):
-   col1,col2 =st.columns(2)
-    with col1:
-        with st.expander("Spectral Symbols👇"):
-            st.write(terms)
+	col1,col2 =st.columns(2)
+	with col1:
+		with st.expander("Spectral Symbols👇"):
+			st.write(terms)
 
 	
 
