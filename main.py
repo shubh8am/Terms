@@ -18,33 +18,24 @@ def total_spin(no_of_e,rooms):
 	
 	
 #user input config
-
-state=[{"n":int(i[0]),"l":res.get(i[1]),"s":total_spin(int(i[2]),2*res.get(i[1])+1)} for i in st.text_input("\tEnter Valence Configuration: ").split(" ") if valid(i)]
-
-
-#S=| S1+S2 | to | S1 - S2 |
-spin=[(state[0].get("s")+state[1].get("s")-i) for i in range(1+int(state[0].get("s")+state[1].get("s")-abs(state[0].get("s")-state[1].get("s"))))]
-
-
-#L=| L1+L2 | to | L1 - L2 |
-orbit=[round((state[0].get("l")+state[1].get("l")-i),2) for i in range(1+int(state[0].get("l")+state[1].get("l")-abs(state[0].get("l")-state[1].get("l"))))]
-
-
-#J=| L+S | to | L - S |
-for s in spin:
-	for l in orbit:
-		j=[(s+l-i) for i in range(1+int(s+l-abs(s-l)))]
-		terms.append(str(int(2*s+1))+orb.get(l)+str(j))
-		
-# spectral terms printing
-print("\t|---Spectral Terms---|")
+ip=st.text_input("\tEnter Valence Configuration: ")
 if st.button("Find", type="primary"):
+	state=[{"n":int(i[0]),"l":res.get(i[1]),"s":total_spin(int(i[2]),2*res.get(i[1])+1)} for i in ip.split(" ") if valid(i)]
+	#S=| S1+S2 | to | S1 - S2 
+        spin=[(state[0].get("s")+state[1].get("s")-i) for i in range(1+int(state[0].get("s")+state[1].get("s")-abs(state[0].get("s")-state[1].get("s"))))]
+
+        #L=| L1+L2 | to | L1 - L2 |
+        orbit=[round((state[0].get("l")+state[1].get("l")-i),2) for i in range(1+int(state[0].get("l")+state[1].get("l")-abs(state[0].get("l")-state[1].get("l"))))]
+
+        #J=| L+S | to | L - S |
+        for s in spin:
+		for l in orbit:
+			j=[(s+l-i) for i in range(1+int(s+l-abs(s-l)))]
+			terms.append(str(int(2*s+1))+orb.get(l)+str(j))
 	col1,col2 =st.columns(2)
 	with col1:
 		with st.expander("Spectral Symbols👇"):
-			st.write(terms)
-
-	
+			st.write(terms)	
 
 
 
