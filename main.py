@@ -42,7 +42,7 @@ if st.button("Find", type="primary"):
 
 
 
-"""orbitals = {"s": [0, 2], "p": [1, 6], "d": [2, 10], "f": [3, 14]}
+orbitals = {"s": [0, 2], "p": [1, 6], "d": [2, 10], "f": [3, 14]}
 spin_individual = []
 total_s = []
 total_l = []
